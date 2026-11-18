@@ -12,19 +12,22 @@
 <body>
 <iframe id="f" src="https://pajuhwangso.co.kr/"></iframe>
 <script>
-  var f = document.getElementById('f');
-  f.addEventListener('load', function () {
+  function fix() {
     try {
-      var d = f.contentDocument;
-      var l = d.querySelector('link[rel=stylesheet]');
-      if (l) {
-        var n = d.createElement('link');
-        n.rel = 'stylesheet';
-        n.href = l.href + '?v=' + Date.now();
-        l.replaceWith(n);
-      }
-    } catch (e) {}
-  });
+      var d = document.getElementById('f').contentDocument;
+      var l = d && d.querySelector('link[rel=stylesheet]');
+      if (!l) return setTimeout(fix, 120);
+      if (l.getAttribute('data-fixed')) return;
+      var n = d.createElement('link');
+      n.rel = 'stylesheet';
+      n.href = l.href + '?v=' + Date.now();
+      n.setAttribute('data-fixed', '1');
+      l.replaceWith(n);
+      document.title = '모바일 검수 (css refreshed)';
+    } catch (e) { setTimeout(fix, 200); }
+  }
+  setTimeout(fix, 400);
+  setTimeout(fix, 1600);
 </script>
 </body>
 </html>

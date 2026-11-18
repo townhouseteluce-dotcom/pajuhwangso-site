@@ -16,6 +16,30 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* ---------- 히어로 사진 슬라이드 (자동 전환) ---------- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.hero-slides img'));
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (slides.length > 1 && !reduceMotion) {
+    var cur = 0;
+    var tick = function () {
+      slides[cur].classList.remove('is-on');
+      cur = (cur + 1) % slides.length;
+      slides[cur].classList.add('is-on');
+    };
+    var timer = null;
+    var start = function () {
+      if (timer) return;
+      timer = setInterval(tick, 6500);
+    };
+    var stop = function () {
+      if (timer) { clearInterval(timer); timer = null; }
+    };
+    start();
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else start();
+    });
+  }
+
   /* ---------- 모바일 메뉴 ---------- */
   function closeNav() {
     if (!nav || !menuBtn) return;

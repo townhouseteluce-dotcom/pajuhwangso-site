@@ -12,8 +12,19 @@
 <body>
 <iframe id="f" src="https://pajuhwangso.co.kr/"></iframe>
 <script>
-  var s = new URLSearchParams(location.search).get('s');
-  if (s) document.getElementById('f').src = 'https://pajuhwangso.co.kr/#' + s;
+  var f = document.getElementById('f');
+  f.addEventListener('load', function () {
+    try {
+      var d = f.contentDocument;
+      var l = d.querySelector('link[rel=stylesheet]');
+      if (l) {
+        var n = d.createElement('link');
+        n.rel = 'stylesheet';
+        n.href = l.href + '?v=' + Date.now();
+        l.replaceWith(n);
+      }
+    } catch (e) {}
+  });
 </script>
 </body>
 </html>

@@ -195,8 +195,8 @@ svg{display:block}
 .hero-shade{
   position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
-    linear-gradient(100deg,rgba(8,22,15,.95) 0%,rgba(8,22,15,.88) 30%,rgba(8,22,15,.62) 58%,rgba(8,22,15,.34) 100%),
-    linear-gradient(180deg,rgba(8,22,15,.62) 0%,rgba(8,22,15,.18) 32%,rgba(8,22,15,.72) 100%);
+    linear-gradient(100deg,rgba(8,22,15,.93) 0%,rgba(8,22,15,.84) 30%,rgba(8,22,15,.54) 58%,rgba(8,22,15,.2) 100%),
+    linear-gradient(180deg,rgba(8,22,15,.55) 0%,rgba(8,22,15,.12) 32%,rgba(8,22,15,.62) 100%);
 }
 .hero-grain{
   position:absolute;inset:0;z-index:-1;opacity:.18;pointer-events:none;

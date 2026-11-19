@@ -201,7 +201,7 @@ svg{display:block}
 .hero-veil{
   position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(180deg,rgba(8,22,15,.86) 0%,rgba(8,22,15,.34) 15%,rgba(8,22,15,0) 38%),
+    linear-gradient(180deg,rgba(8,22,15,.9) 0%,rgba(8,22,15,.46) 15%,rgba(8,22,15,0) 40%),
     linear-gradient(0deg,#0c1d15 0%,rgba(12,29,21,.78) 8%,rgba(12,29,21,0) 32%);
 }
 .hero-media-bar{

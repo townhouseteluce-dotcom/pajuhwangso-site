@@ -16,28 +16,49 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---------- 히어로 사진 슬라이드 (자동 전환) ---------- */
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.hero-slides img'));
+  /* ---------- 히어로 영상 ----------
+     - 자동재생이 되면 영상이 포스터 위로 부드럽게 드러난다.
+     - 저사양·데이터 절약·모션 최소화 환경에서는 포스터 사진만 보여 준다.
+     - 화면이 가려지면 재생을 멈춰 배터리·데이터를 아낀다. */
+  var heroVideo = document.getElementById('heroVideo');
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (slides.length > 1 && !reduceMotion) {
-    var cur = 0;
-    var tick = function () {
-      slides[cur].classList.remove('is-on');
-      cur = (cur + 1) % slides.length;
-      slides[cur].classList.add('is-on');
-    };
-    var timer = null;
-    var start = function () {
-      if (timer) return;
-      timer = setInterval(tick, 6500);
-    };
-    var stop = function () {
-      if (timer) { clearInterval(timer); timer = null; }
-    };
-    start();
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) stop(); else start();
-    });
+  var saveData = navigator.connection && (navigator.connection.saveData || /2g/.test(navigator.connection.effectiveType || ''));
+
+  if (heroVideo) {
+    if (reduceMotion || saveData) {
+      heroVideo.removeAttribute('autoplay');
+      try { heroVideo.pause(); } catch (err) { /* noop */ }
+    } else {
+      heroVideo.addEventListener('playing', function () {
+        heroVideo.classList.add('is-playing');
+      });
+
+      var tryPlay = function () {
+        var p = heroVideo.play();
+        if (p && p.catch) {
+          p.catch(function () {
+            // 자동재생이 막힌 경우(절전 모드 등) 첫 터치·스크롤에서 한 번 더 시도
+            var kick = function () {
+              document.removeEventListener('touchstart', kick);
+              document.removeEventListener('click', kick);
+              var q = heroVideo.play();
+              if (q && q.catch) q.catch(function () {});
+            };
+            document.addEventListener('touchstart', kick, { once: true, passive: true });
+            document.addEventListener('click', kick, { once: true });
+          });
+        }
+      };
+      tryPlay();
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          try { heroVideo.pause(); } catch (err) { /* noop */ }
+        } else {
+          tryPlay();
+        }
+      });
+    }
   }
 
   /* ---------- 모바일 메뉴 ---------- */

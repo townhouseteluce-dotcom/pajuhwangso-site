@@ -67,15 +67,24 @@
 
 <!-- ===================== HERO ===================== -->
 <section class="hero" id="top">
-  <div class="hero-slides" aria-hidden="true">
-    <img class="is-on" src="assets/hero-aerial.jpg" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
-    <img src="assets/hero-sunset.jpg" alt="" width="1920" height="1080" decoding="async">
-    <img src="assets/hero-house.jpg" alt="" width="1920" height="1080" decoding="async">
+  <!-- 상단 영상 — 글자보다 먼저, 화면을 가로로 가득 채운다 -->
+  <div class="hero-media">
+    <img class="hero-poster" src="assets/hero-video-poster.jpg" alt="" width="1280" height="720" fetchpriority="high" decoding="async">
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto"
+           poster="assets/hero-video-poster.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+      <source src="assets/hero-video.mp4" type="video/mp4">
+    </video>
+    <span class="hero-veil" aria-hidden="true"></span>
+    <div class="hero-media-bar">
+      <p class="hero-media-cap">
+        <span class="hero-media-dot" aria-hidden="true"></span>
+        실제 촬영 — 단지 항공 전경 · 노을 진 골목 · 완공 주택
+      </p>
+      <p class="hero-media-tag">HWANGSO ROCK VILLAGE · 영상</p>
+    </div>
   </div>
-  <div class="hero-shade" aria-hidden="true"></div>
-  <div class="hero-grain" aria-hidden="true"></div>
 
-  <div class="wrap hero-inner">
+  <div class="wrap hero-body">
     <div class="hero-copy">
       <p class="hero-addr">
         <span class="dot" aria-hidden="true"></span>
@@ -94,7 +103,7 @@
       </p>
     </div>
 
-    <div class="hero-rest">
+    <div class="hero-side">
       <ul class="hero-prices" aria-label="평형별 분양가">
         <li>
           <span class="hp-label">맞춤 설계 · 24평</span>
@@ -124,23 +133,15 @@
         <a class="btn btn-line hero-visit-btn" href="#visit">방문 예약하기</a>
       </div>
 
-      <ul class="hero-facts">
-        <li><b>초품아</b> 영도초·병설유치원 도보</li>
-        <li><b>월롱역 5분</b>경의중앙선</li>
-        <li><b>월롱IC 5분</b>서울문산고속도로</li>
-        <li><b>도내IC 2027</b>수도권제2순환 개통 예정</li>
-      </ul>
     </div>
+
+    <ul class="hero-facts">
+      <li><b>초품아</b> 영도초·병설유치원 도보</li>
+      <li><b>월롱역 5분</b>경의중앙선</li>
+      <li><b>월롱IC 5분</b>서울문산고속도로</li>
+      <li><b>도내IC 2027</b>수도권제2순환 개통 예정</li>
+    </ul>
   </div>
-
-  <p class="hero-credit">
-    <span class="hero-credit-dot" aria-hidden="true"></span>
-    실제 촬영 — 드론 항공 전경 · 단지 노을 · 완공 주택
-  </p>
-
-  <a class="hero-scroll" href="#why" aria-label="아래로 이동">
-    <span></span>
-  </a>
 </section>
 
 <!-- ===================== TRUST STRIP ===================== -->

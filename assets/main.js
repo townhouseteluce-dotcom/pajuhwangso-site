@@ -123,7 +123,7 @@
   var smsLink = document.getElementById('smsLink');
   var copyBtn = document.getElementById('copyBtn');
   var editBtn = document.getElementById('editBtn');
-  var PHONE = '+821022463579';
+  var PHONE = '+821048257879';
 
   var nameEl = document.getElementById('fName');
   var phoneEl = document.getElementById('fPhone');
